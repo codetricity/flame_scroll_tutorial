@@ -10,7 +10,7 @@ class HomeScreen extends Component with HasGameRef<ScrollGame>, TapCallbacks {
 
   @override
   void onLoad() async {
-    ParallaxComponent seaBackground = await gameRef.loadParallaxComponent([
+    ParallaxComponent mountainBackground = await gameRef.loadParallaxComponent([
       ParallaxImageData('sky_lightened.png'),
       ParallaxImageData('clouds_bg.png'),
       ParallaxImageData('mountains.png'),
@@ -19,7 +19,7 @@ class HomeScreen extends Component with HasGameRef<ScrollGame>, TapCallbacks {
     ],
         baseVelocity: Vector2(10, 0),
         velocityMultiplierDelta: Vector2(1.6, 1.0));
-    add(seaBackground);
+    add(mountainBackground);
 
     final crowAnimation = await gameRef.loadSpriteAnimation(
         'crow_350x400.webp',
@@ -40,7 +40,7 @@ class HomeScreen extends Component with HasGameRef<ScrollGame>, TapCallbacks {
   @override
   void update(double dt) {
     super.update(dt);
-    if (crow.y < gameRef.size.y) {
+    if (crow.y < gameRef.size.y && crow.y > 0) {
       velocity.y += .4;
       crow.position += velocity * dt;
     } else {
