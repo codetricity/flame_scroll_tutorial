@@ -1,6 +1,6 @@
 # scroll
 
-![screenshot](readme_assets/screenshot2.gif)
+![screenshot](readme_assets/screenshot3.gif)
 
 ## Learning Concepts
 
@@ -8,6 +8,7 @@
 * Inifinite scrolling
 * SpriteAnimation from sprite sheet
 * background audio
+* Flame router
 
 ## art credits
 
