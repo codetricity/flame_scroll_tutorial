@@ -1,13 +1,12 @@
-import 'package:flame/events.dart';
+import 'package:flame/experimental.dart';
 import 'package:flame/game.dart';
 import 'package:flame_audio/flame_audio.dart';
 
 import 'game_over.dart';
 import 'home_screen.dart';
 
-class ScrollGame extends FlameGame with TapDetector {
+class ScrollGame extends FlameGame with HasTappableComponents {
   late final RouterComponent router;
-  Vector2 velocity = Vector2(0, 30);
   bool gameOver = false;
   bool displayingGameOver = false;
 
@@ -21,7 +20,7 @@ class ScrollGame extends FlameGame with TapDetector {
       initialRoute: 'home',
     ));
     FlameAudio.bgm.initialize();
-    FlameAudio.bgm.play('dramatic_boi.ogg');
+    FlameAudio.bgm.play('dramatic_boi.ogg', volume: 0.5);
   }
 
   @override
@@ -30,12 +29,9 @@ class ScrollGame extends FlameGame with TapDetector {
     if (gameOver && !displayingGameOver) {
       router.pushNamed('gameover');
       displayingGameOver = true;
+      if (FlameAudio.bgm.isPlaying) {
+        FlameAudio.bgm.pause();
+      }
     }
-  }
-
-  @override
-  void onTapUp(TapUpInfo info) {
-    super.onTapUp(info);
-    velocity.y -= 20;
   }
 }
