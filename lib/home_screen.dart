@@ -40,7 +40,7 @@ class HomeScreen extends Component with HasGameRef<ScrollGame>, TapCallbacks {
   @override
   void update(double dt) {
     super.update(dt);
-    if (crow.y < gameRef.size.y && crow.y > 0) {
+    if (crow.y < gameRef.size.y && crow.y > 0 && !gameRef.gameOver) {
       velocity.y += .4;
       crow.position += velocity * dt;
     } else {
