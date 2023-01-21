@@ -22,7 +22,11 @@ class AirShip extends SpriteComponent with HasGameRef<ScrollGame> {
     double yPosition = _random.nextDouble() * gameRef.size.y;
 
     position = Vector2(gameRef.size.x, yPosition);
-    add(RectangleHitbox());
+    add(CircleHitbox(
+        isSolid: true,
+        anchor: Anchor.center,
+        radius: size.y * .35,
+        position: size / 2));
   }
 
   @override

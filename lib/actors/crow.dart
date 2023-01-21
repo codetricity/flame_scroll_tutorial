@@ -1,9 +1,10 @@
+import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 
 import '../scroll_game.dart';
-import 'crow_hitbox.dart';
 
-class Crow extends SpriteAnimationComponent with HasGameRef<ScrollGame> {
+class Crow extends SpriteAnimationComponent
+    with HasGameRef<ScrollGame>, CollisionCallbacks {
   @override
   void onLoad() async {
     await super.onLoad();
@@ -19,10 +20,9 @@ class Crow extends SpriteAnimationComponent with HasGameRef<ScrollGame> {
     position = Vector2(gameRef.size.x / 2, gameRef.size.y * .6);
     animation = crowAnimation;
     size = Vector2(gameRef.size.y * 350 / 400, gameRef.size.y) * .5;
-    add(CrowHitBox()
-      ..anchor = Anchor.center
-      ..position = size / 2
-      ..size = Vector2(size.x * .7, size.y / 2.7));
+
+    add(RectangleHitbox.relative(Vector2(.65, .25), parentSize: size));
+    debugMode = true;
   }
 
   @override
@@ -32,9 +32,21 @@ class Crow extends SpriteAnimationComponent with HasGameRef<ScrollGame> {
       gameRef.velocity.y += .4;
       position += gameRef.velocity * dt;
     } else {
-      position = Vector2(gameRef.size.x / 2, gameRef.size.y * .2);
-      gameRef.velocity = Vector2(0, 30);
-      gameRef.gameOver = true;
+      setGameOver();
     }
+  }
+
+  void setGameOver() {
+    position = Vector2(gameRef.size.x / 2, gameRef.size.y * .2);
+    gameRef.velocity = Vector2(0, 30);
+    gameRef.gameOver = true;
+  }
+
+  @override
+  void onCollisionStart(
+      Set<Vector2> intersectionPoints, PositionComponent other) {
+    print('collision');
+    setGameOver();
+    super.onCollisionStart(intersectionPoints, other);
   }
 }
