@@ -3,7 +3,7 @@ import 'package:flame/experimental.dart';
 import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
 
-import 'scroll_game.dart';
+import '../scroll_game.dart';
 
 class GameOver extends Component with HasGameRef<ScrollGame>, TapCallbacks {
   @override

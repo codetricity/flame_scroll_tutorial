@@ -2,9 +2,9 @@ import 'package:flame/components.dart';
 import 'package:flame/experimental.dart';
 import 'package:flame/parallax.dart';
 
-import 'actors/airship.dart';
-import 'actors/crow.dart';
-import 'scroll_game.dart';
+import '../actors/airship.dart';
+import '../actors/crow.dart';
+import '../scroll_game.dart';
 
 class HomeScreen extends Component with HasGameRef<ScrollGame>, TapCallbacks {
   Timer interval = Timer(6, repeat: true);

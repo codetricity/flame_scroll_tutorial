@@ -2,8 +2,9 @@ import 'package:flame/experimental.dart';
 import 'package:flame/game.dart';
 import 'package:flame_audio/flame_audio.dart';
 
-import 'game_over.dart';
-import 'home_screen.dart';
+import 'screens/game_over.dart';
+import 'screens/home_screen.dart';
+import 'screens/start_screen.dart';
 
 class ScrollGame extends FlameGame
     with HasTappableComponents, HasCollisionDetection {
@@ -14,15 +15,16 @@ class ScrollGame extends FlameGame
 
   @override
   void onLoad() async {
+    FlameAudio.bgm.initialize();
+
     add(router = RouterComponent(
       routes: {
-        'home': Route(HomeScreen.new),
+        'game': Route(HomeScreen.new),
         'gameover': Route(GameOver.new),
+        'start': Route(StartScreen.new),
       },
-      initialRoute: 'home',
+      initialRoute: 'start',
     ));
-    FlameAudio.bgm.initialize();
-    FlameAudio.bgm.play('dramatic_boi.ogg', volume: 0.5);
   }
 
   @override
