@@ -15,6 +15,7 @@ class ScrollGame extends FlameGame
 
   @override
   void onLoad() async {
+    await super.onLoad();
     FlameAudio.bgm.initialize();
 
     add(router = RouterComponent(
