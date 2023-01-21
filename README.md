@@ -1,6 +1,6 @@
 # scroll
 
-![screenshot](readme_assets/screenshot3.gif)
+![screenshot 4](readme_assets/screenshot4.png)
 
 ## Learning Concepts
 

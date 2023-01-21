@@ -22,7 +22,7 @@ class ScrollGame extends FlameGame
       initialRoute: 'home',
     ));
     FlameAudio.bgm.initialize();
-    // FlameAudio.bgm.play('dramatic_boi.ogg', volume: 0.5);
+    FlameAudio.bgm.play('dramatic_boi.ogg', volume: 0.5);
   }
 
   @override
