@@ -2,7 +2,7 @@ import 'package:flame/flame.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 
-import 'buttons.dart';
+import 'gui/buttons.dart';
 import 'scroll_game.dart';
 
 void main() {
