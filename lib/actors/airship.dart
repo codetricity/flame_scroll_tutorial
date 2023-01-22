@@ -32,7 +32,7 @@ class AirShip extends SpriteComponent with HasGameRef<ScrollGame> {
   @override
   void update(double dt) {
     position = position - shipVelocity * dt;
-    if (position.x < 0) {
+    if (position.x < 0 || gameRef.gameOver) {
       removeFromParent();
     }
     super.update(dt);

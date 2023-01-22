@@ -31,6 +31,7 @@ class GameOver extends Component with HasGameRef<ScrollGame>, TapCallbacks {
       FlameAudio.bgm.resume();
     }
     gameRef.router.pop();
+    gameRef.stopwatch.reset();
 
     super.onTapUp(event);
   }

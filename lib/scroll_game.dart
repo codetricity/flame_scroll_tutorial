@@ -12,6 +12,7 @@ class ScrollGame extends FlameGame
   bool gameOver = false;
   bool displayingGameOver = false;
   Vector2 velocity = Vector2(0, 30);
+  final stopwatch = Stopwatch();
 
   @override
   void onLoad() async {

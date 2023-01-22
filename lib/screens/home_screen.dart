@@ -1,6 +1,7 @@
 import 'package:flame/components.dart';
 import 'package:flame/experimental.dart';
 import 'package:flame/parallax.dart';
+import 'package:flutter/material.dart';
 
 import '../actors/airship.dart';
 import '../actors/crow.dart';
@@ -8,7 +9,7 @@ import '../scroll_game.dart';
 
 class HomeScreen extends Component with HasGameRef<ScrollGame>, TapCallbacks {
   Timer interval = Timer(6, repeat: true);
-
+  TextComponent elapsedTime = TextBoxComponent();
   @override
   void onLoad() async {
     ParallaxComponent mountainBackground = await gameRef.loadParallaxComponent([
@@ -24,11 +25,22 @@ class HomeScreen extends Component with HasGameRef<ScrollGame>, TapCallbacks {
 
     add(Crow());
     interval.onTick = () => add(AirShip());
+    gameRef.stopwatch.start();
+    add(
+      elapsedTime
+        ..scale = Vector2.all(1.4)
+        ..position = Vector2(gameRef.size.x * .3, 4)
+        ..textRenderer = TextPaint(
+          style: const TextStyle(color: Colors.black),
+        ),
+    );
   }
 
   @override
   void update(double dt) {
     interval.update(dt);
+    elapsedTime.text = gameRef.stopwatch.elapsed.inSeconds.toString();
+
     super.update(dt);
   }
 

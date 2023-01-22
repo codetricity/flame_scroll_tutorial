@@ -21,7 +21,12 @@ class Crow extends SpriteAnimationComponent
     animation = crowAnimation;
     size = Vector2(gameRef.size.y * 350 / 400, gameRef.size.y) * .5;
 
-    add(RectangleHitbox.relative(Vector2(.65, .25), parentSize: size));
+    add(
+      RectangleHitbox.relative(
+        Vector2(.65, .25),
+        parentSize: size,
+      ),
+    );
     debugMode = true;
   }
 
