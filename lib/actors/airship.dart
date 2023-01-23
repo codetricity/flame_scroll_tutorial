@@ -6,7 +6,8 @@ import 'package:flame/components.dart';
 import '../scroll_game.dart';
 
 class AirShip extends SpriteComponent with HasGameRef<ScrollGame> {
-  AirShip() : super() {
+  final double xVelocity;
+  AirShip(this.xVelocity) : super() {
     debugMode = true;
   }
 
@@ -16,6 +17,10 @@ class AirShip extends SpriteComponent with HasGameRef<ScrollGame> {
   @override
   void onLoad() async {
     super.onLoad();
+    if (xVelocity > 30.0) {
+      shipVelocity = Vector2(xVelocity, 0);
+    }
+
     sprite = await gameRef.loadSprite('airship.png');
     size = Vector2(gameRef.size.y * 400 / 235, gameRef.size.y) * .10;
     anchor = Anchor.center;

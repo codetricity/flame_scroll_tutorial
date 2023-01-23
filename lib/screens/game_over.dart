@@ -6,17 +6,31 @@ import 'package:flutter/material.dart';
 import '../scroll_game.dart';
 
 class GameOver extends Component with HasGameRef<ScrollGame>, TapCallbacks {
+  TextComponent gameOverMessage = TextComponent(
+      anchor: Anchor.center,
+      textRenderer:
+          TextPaint(style: const TextStyle(fontSize: 64, color: Colors.red)));
   @override
   void onLoad() async {
     super.onLoad();
     FlameAudio.bgm.pause();
+    gameOverMessage.position = gameRef.size / 2;
 
-    add(TextComponent(
-        text: 'GAME OVER',
-        anchor: Anchor.center,
-        position: gameRef.size / 2,
-        textRenderer: TextPaint(
-            style: const TextStyle(fontSize: 64, color: Colors.red))));
+    add(gameOverMessage..position = gameRef.size / 2);
+  }
+
+  @override
+  void update(double dt) {
+    if (gameRef.displayingGameOver) {
+      if (gameRef.stopwatch.isRunning) {
+        gameRef.stopwatch.stop();
+      }
+    }
+
+    var elapsedSeconds = gameRef.stopwatch.elapsed.inSeconds.toString();
+
+    gameOverMessage.text = 'GAME OVER $elapsedSeconds s';
+    super.update(dt);
   }
 
   @override
@@ -32,6 +46,7 @@ class GameOver extends Component with HasGameRef<ScrollGame>, TapCallbacks {
     }
     gameRef.router.pop();
     gameRef.stopwatch.reset();
+    gameRef.stopwatch.start();
 
     super.onTapUp(event);
   }
