@@ -14,7 +14,12 @@ class HomeScreen extends Component with HasGameRef<ScrollGame>, TapCallbacks {
   void onLoad() async {
     add(MountainBackground());
     add(Crow());
+    addShips();
+    add(ElapsedTime());
+    gameRef.stopwatch.start();
+  }
 
+  void addShips() {
     interval.onTick = () {
       double elapsedSeconds = gameRef.stopwatch.elapsed.inSeconds.toDouble();
       add(AirShip(elapsedSeconds));
@@ -51,8 +56,6 @@ class HomeScreen extends Component with HasGameRef<ScrollGame>, TapCallbacks {
         );
       }
     };
-    gameRef.stopwatch.start();
-    add(ElapsedTime());
   }
 
   @override
