@@ -22,38 +22,32 @@ class HomeScreen extends Component with HasGameRef<ScrollGame>, TapCallbacks {
   void addShips() {
     interval.onTick = () {
       double elapsedSeconds = gameRef.stopwatch.elapsed.inSeconds.toDouble();
+      void addShipAtSecond(int secondToAdd) {
+        Future.delayed(
+            Duration(seconds: secondToAdd), () => add(AirShip(elapsedSeconds)));
+      }
+
+      // add first ship
       add(AirShip(elapsedSeconds));
+      // add 2 ships each tick after 30 seconds
       if (elapsedSeconds > 30.0) {
-        Future.delayed(
-          const Duration(seconds: 3),
-          () => add(
-            AirShip(elapsedSeconds),
-          ),
-        );
+        addShipAtSecond(3);
       }
+      // add 3 ships each tick after 60 seconds
       if (elapsedSeconds > 60.0) {
-        Future.delayed(
-          const Duration(seconds: 1),
-          () => add(
-            AirShip(elapsedSeconds),
-          ),
-        );
+        addShipAtSecond(1);
       }
+      // add 4th ship each tick cycle
       if (elapsedSeconds > 90.0) {
-        Future.delayed(
-          const Duration(seconds: 4),
-          () => add(
-            AirShip(elapsedSeconds),
-          ),
-        );
+        addShipAtSecond(4);
       }
+      // add fifth ship each tick cycle
       if (elapsedSeconds > 110.0) {
-        Future.delayed(
-          const Duration(seconds: 5),
-          () => add(
-            AirShip(elapsedSeconds),
-          ),
-        );
+        addShipAtSecond(5);
+      }
+      // add 6th ship each tick cycle
+      if (elapsedSeconds > 130.0) {
+        addShipAtSecond(2);
       }
     };
   }
