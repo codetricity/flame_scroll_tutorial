@@ -2,6 +2,7 @@ import 'package:flame/experimental.dart';
 import 'package:flame/game.dart';
 import 'package:flame_audio/flame_audio.dart';
 
+import 'actors/crow.dart';
 import 'screens/game_over.dart';
 import 'screens/home_screen.dart';
 import 'screens/start_screen.dart';
@@ -13,6 +14,7 @@ class ScrollGame extends FlameGame
   bool displayingGameOver = false;
   Vector2 velocity = Vector2(0, 30);
   final stopwatch = Stopwatch();
+  final Crow crow = Crow();
 
   @override
   void onLoad() async {

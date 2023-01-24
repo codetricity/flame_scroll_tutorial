@@ -2,7 +2,6 @@ import 'package:flame/components.dart';
 import 'package:flame/experimental.dart';
 
 import '../actors/airship.dart';
-import '../actors/crow.dart';
 import '../gui/elapsed_time.dart';
 import '../scroll_game.dart';
 import '../world/mountain_background.dart';
@@ -13,7 +12,7 @@ class HomeScreen extends Component with HasGameRef<ScrollGame>, TapCallbacks {
   @override
   void onLoad() async {
     add(MountainBackground());
-    add(Crow());
+    add(gameRef.crow);
     addShips();
     add(ElapsedTime());
     gameRef.stopwatch.start();
