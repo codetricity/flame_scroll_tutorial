@@ -11,7 +11,7 @@ class Crow extends SpriteAnimationComponent
     // debugMode = true;
 
     final crowAnimation = await gameRef.loadSpriteAnimation(
-        'jesse_350x400.webp',
+        'jesse_2.webp',
         SpriteAnimationData.sequenced(
             amount: 12,
             amountPerRow: 4,

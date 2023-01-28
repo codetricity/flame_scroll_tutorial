@@ -12,6 +12,12 @@ class HomeScreen extends Component with HasGameRef<ScrollGame>, TapCallbacks {
   @override
   void onLoad() async {
     add(MountainBackground());
+    add(
+      SpriteComponent(
+          sprite: await gameRef.loadSprite('oppkey_logo.png'),
+          position: Vector2(gameRef.size.x * .8, gameRef.size.y * .05),
+          size: Vector2.all(gameRef.size.y * .2)),
+    );
     add(gameRef.crow);
     addShips();
     add(ElapsedTime());

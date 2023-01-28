@@ -21,8 +21,8 @@ class AirShip extends SpriteComponent with HasGameRef<ScrollGame> {
       shipVelocity = Vector2(xVelocity, 0);
     }
 
-    sprite = await gameRef.loadSprite('airship.png');
-    size = Vector2(gameRef.size.y * 400 / 235, gameRef.size.y) * .10;
+    sprite = await gameRef.loadSprite('frustrated_215_167.webp');
+    size = Vector2(gameRef.size.y * 215 / 167, gameRef.size.y) * .10;
     anchor = Anchor.center;
     double yPosition = _random.nextDouble() * gameRef.size.y;
 
