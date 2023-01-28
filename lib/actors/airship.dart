@@ -8,7 +8,7 @@ import '../scroll_game.dart';
 class AirShip extends SpriteComponent with HasGameRef<ScrollGame> {
   final double xVelocity;
   AirShip(this.xVelocity) : super() {
-    debugMode = true;
+    // debugMode = true;
   }
 
   Vector2 shipVelocity = Vector2(30, 0);

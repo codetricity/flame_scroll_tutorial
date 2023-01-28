@@ -8,8 +8,10 @@ class Crow extends SpriteAnimationComponent
   @override
   void onLoad() async {
     await super.onLoad();
+    // debugMode = true;
+
     final crowAnimation = await gameRef.loadSpriteAnimation(
-        'crow_350x400.webp',
+        'jesse_350x400.webp',
         SpriteAnimationData.sequenced(
             amount: 12,
             amountPerRow: 4,
@@ -24,10 +26,11 @@ class Crow extends SpriteAnimationComponent
     add(
       RectangleHitbox.relative(
         Vector2(.65, .25),
+        anchor: Anchor.center,
+        position: Vector2(size.x * .55, size.y * .4),
         parentSize: size,
       ),
     );
-    debugMode = true;
   }
 
   @override

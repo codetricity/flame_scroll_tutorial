@@ -15,6 +15,14 @@ class StartScreen extends Component with HasGameRef<ScrollGame>, TapCallbacks {
         position: gameRef.size / 2,
         textRenderer: TextPaint(
             style: const TextStyle(fontSize: 64, color: Colors.green))));
+    add(TextBoxComponent(
+        boxConfig: TextBoxConfig(maxWidth: gameRef.size.x * .7),
+        anchor: Anchor.center,
+        position: Vector2(gameRef.size.x / 2, gameRef.size.y * .7),
+        text: 'Click on mouse button to keep crow flying. Avoid hitting ships. '
+            'Click on Game Over screen to restart game. Close tab to end game. '
+            'Click on start to begin play.',
+        textRenderer: TextPaint(style: const TextStyle(color: Colors.yellow))));
   }
 
   @override
