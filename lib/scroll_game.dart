@@ -8,7 +8,7 @@ import 'screens/home_screen.dart';
 import 'screens/start_screen.dart';
 
 class ScrollGame extends FlameGame
-    with HasTappableComponents, HasCollisionDetection {
+    with HasTappableComponents, HasCollisionDetection, SingleGameInstance {
   late final RouterComponent router;
   bool gameOver = false;
   bool displayingGameOver = false;

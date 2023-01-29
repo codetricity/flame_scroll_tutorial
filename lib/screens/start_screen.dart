@@ -6,10 +6,13 @@ import 'package:flutter/material.dart';
 import '../scroll_game.dart';
 
 class StartScreen extends Component with HasGameRef<ScrollGame>, TapCallbacks {
+  TextBoxComponent instructions = TextBoxComponent();
+  TextBoxComponent oppkeyDescription = TextBoxComponent();
+
   @override
   void onLoad() async {
     await super.onLoad();
-    add(TextBoxComponent(
+    oppkeyDescription = TextBoxComponent(
         boxConfig: TextBoxConfig(maxWidth: gameRef.size.x * .7),
         anchor: Anchor.center,
         position: Vector2(gameRef.size.x / 2, gameRef.size.y * .05),
@@ -17,7 +20,8 @@ class StartScreen extends Component with HasGameRef<ScrollGame>, TapCallbacks {
             'with quality documentation, testing, user groups, and blogging. '
             'We make it fun to use your API.',
         textRenderer: TextPaint(
-            style: const TextStyle(color: Colors.grey, fontSize: 24))));
+            style: const TextStyle(color: Colors.grey, fontSize: 24)));
+    add(oppkeyDescription);
     add(
       SpriteComponent(
           sprite: await gameRef.loadSprite('oppkey_logo.png'),
@@ -31,7 +35,8 @@ class StartScreen extends Component with HasGameRef<ScrollGame>, TapCallbacks {
         position: gameRef.size / 2,
         textRenderer: TextPaint(
             style: const TextStyle(fontSize: 64, color: Colors.green))));
-    add(TextBoxComponent(
+
+    instructions = TextBoxComponent(
         boxConfig: TextBoxConfig(maxWidth: gameRef.size.x * .7),
         anchor: Anchor.center,
         position: Vector2(gameRef.size.x / 2, gameRef.size.y * .7),
@@ -40,7 +45,20 @@ class StartScreen extends Component with HasGameRef<ScrollGame>, TapCallbacks {
             'developers. '
             'Click on Game Over screen to restart game. Close tab to end game. '
             'Click on start to begin play.',
-        textRenderer: TextPaint(style: const TextStyle(color: Colors.yellow))));
+        textRenderer: TextPaint(style: const TextStyle(color: Colors.yellow)));
+    add(instructions);
+  }
+
+  @override
+  void onGameResize(Vector2 size) {
+    super.onGameResize(size);
+    instructions.position = Vector2(gameRef.size.x / 2, gameRef.size.y * .7);
+
+    if (size.y < 820) {
+      oppkeyDescription.textRenderer =
+          TextPaint(style: const TextStyle(color: Colors.grey, fontSize: 12));
+      print('smaller size');
+    }
   }
 
   @override
