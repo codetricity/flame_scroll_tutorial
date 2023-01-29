@@ -10,13 +10,20 @@ class GameOver extends Component with HasGameRef<ScrollGame>, TapCallbacks {
       anchor: Anchor.center,
       textRenderer:
           TextPaint(style: const TextStyle(fontSize: 64, color: Colors.red)));
+  TextComponent highScoreComponent = TextComponent(
+      anchor: Anchor.center,
+      textRenderer: TextPaint(
+          style: const TextStyle(fontSize: 24, color: Colors.yellow)));
   @override
   void onLoad() async {
     super.onLoad();
     FlameAudio.bgm.pause();
     gameOverMessage.position = gameRef.size / 2;
 
-    add(gameOverMessage..position = gameRef.size / 2);
+    add(gameOverMessage
+      ..position = Vector2(gameRef.size.x / 2, gameRef.size.y * .3));
+    add(highScoreComponent
+      ..position = Vector2(gameRef.size.x / 2, gameRef.size.y * .5));
   }
 
   @override
@@ -27,9 +34,13 @@ class GameOver extends Component with HasGameRef<ScrollGame>, TapCallbacks {
       }
     }
 
-    var elapsedSeconds = gameRef.stopwatch.elapsed.inSeconds.toString();
+    var elapsedSeconds = gameRef.stopwatch.elapsed.inSeconds;
+    if (elapsedSeconds > gameRef.highScore) {
+      gameRef.highScore = elapsedSeconds;
+    }
 
     gameOverMessage.text = 'GAME OVER $elapsedSeconds s';
+    highScoreComponent.text = 'HIGH SCORE: ${gameRef.highScore}';
     super.update(dt);
   }
 

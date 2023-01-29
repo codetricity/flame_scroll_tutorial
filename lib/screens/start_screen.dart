@@ -12,21 +12,25 @@ class StartScreen extends Component with HasGameRef<ScrollGame>, TapCallbacks {
   @override
   void onLoad() async {
     await super.onLoad();
+    bool smallSize = gameRef.size.y < 820;
+
     oppkeyDescription = TextBoxComponent(
-        boxConfig: TextBoxConfig(maxWidth: gameRef.size.x * .7),
-        anchor: Anchor.center,
-        position: Vector2(gameRef.size.x / 2, gameRef.size.y * .05),
-        text: 'Oppkey helps your organization avoid  developer frustration '
-            'with quality documentation, testing, user groups, and blogging. '
-            'We make it fun to use your API.',
-        textRenderer: TextPaint(
-            style: const TextStyle(color: Colors.grey, fontSize: 24)));
+      boxConfig: TextBoxConfig(maxWidth: gameRef.size.x * .7),
+      anchor: Anchor.topCenter,
+      position: Vector2(gameRef.size.x / 2, gameRef.size.y * .01),
+      text: 'Oppkey helps your organization avoid  developer frustration '
+          'with quality documentation, testing, user groups, and blogging. '
+          'We make it fun to use your API.',
+    );
+    oppkeyDescription.textRenderer = smallSize
+        ? TextPaint(style: const TextStyle(color: Colors.white, fontSize: 12))
+        : TextPaint(style: const TextStyle(color: Colors.grey, fontSize: 24));
     add(oppkeyDescription);
     add(
       SpriteComponent(
           sprite: await gameRef.loadSprite('oppkey_logo.png'),
           anchor: Anchor.center,
-          position: Vector2(gameRef.size.x / 2, gameRef.size.y * .2),
+          position: Vector2(gameRef.size.x / 2, gameRef.size.y * .3),
           size: Vector2.all(gameRef.size.y * .2)),
     );
     add(TextComponent(
@@ -56,8 +60,10 @@ class StartScreen extends Component with HasGameRef<ScrollGame>, TapCallbacks {
 
     if (size.y < 820) {
       oppkeyDescription.textRenderer =
-          TextPaint(style: const TextStyle(color: Colors.grey, fontSize: 12));
-      print('smaller size');
+          TextPaint(style: const TextStyle(color: Colors.white, fontSize: 12));
+    } else {
+      oppkeyDescription.textRenderer =
+          TextPaint(style: const TextStyle(color: Colors.grey, fontSize: 24));
     }
   }
 

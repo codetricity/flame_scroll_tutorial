@@ -15,6 +15,7 @@ class ScrollGame extends FlameGame
   Vector2 velocity = Vector2(0, 30);
   final stopwatch = Stopwatch();
   final Crow crow = Crow();
+  int highScore = 0;
 
   @override
   void onLoad() async {
