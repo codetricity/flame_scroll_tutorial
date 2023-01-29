@@ -16,7 +16,8 @@ class StartScreen extends Component with HasGameRef<ScrollGame>, TapCallbacks {
         text: 'Oppkey helps your organization avoid  developer frustration '
             'with quality documentation, testing, user groups, and blogging. '
             'We make it fun to use your API.',
-        textRenderer: TextPaint(style: const TextStyle(color: Colors.grey))));
+        textRenderer: TextPaint(
+            style: const TextStyle(color: Colors.grey, fontSize: 24))));
     add(
       SpriteComponent(
           sprite: await gameRef.loadSprite('oppkey_logo.png'),
