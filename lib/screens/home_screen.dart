@@ -1,5 +1,6 @@
 import 'package:flame/components.dart';
 import 'package:flame/experimental.dart';
+import 'package:flutter/material.dart';
 
 import '../actors/airship.dart';
 import '../gui/elapsed_time.dart';
@@ -22,6 +23,12 @@ class HomeScreen extends Component with HasGameRef<ScrollGame>, TapCallbacks {
     addShips();
     add(ElapsedTime());
     gameRef.stopwatch.start();
+    add(TextComponent(
+        text: 'avoid developer frustration - partner with Oppkey',
+        anchor: Anchor.bottomCenter,
+        position: Vector2(gameRef.size.x / 2, gameRef.size.y * .95),
+        textRenderer: TextPaint(
+            style: const TextStyle(fontSize: 24, color: Colors.pink))));
   }
 
   void addShips() {
